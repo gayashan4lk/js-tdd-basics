@@ -15,9 +15,14 @@ class Stack {
 }
 
 describe('My stack', () => {
+	let stack;
+
+	beforeEach(() => {
+		stack = new Stack();
+	});
+
 	it('should be empty when created', () => {
 		// Arrange
-		const stack = new Stack();
 
 		// Act
 		const actual = stack;
@@ -29,7 +34,6 @@ describe('My stack', () => {
 
 	it('should push new elements on the top of the stack', () => {
 		// Arrange
-		const stack = new Stack();
 
 		// Act
 		stack.push('👻');
