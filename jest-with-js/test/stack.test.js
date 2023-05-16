@@ -4,13 +4,20 @@ class Stack {
 		this.items = {};
 	}
 
+	get peek() {
+		return this.items[this.top];
+	}
+
 	push(item) {
 		this.top += 1;
 		this.items[this.top] = item;
 	}
 
-	get peek() {
-		return this.items[this.top];
+	pop() {
+		const item = this.items[this.top];
+		delete this.items[this.top];
+		this.top -= 1;
+		return item;
 	}
 }
 
@@ -25,11 +32,10 @@ describe('My stack', () => {
 		// Arrange
 
 		// Act
-		const actual = stack;
 
 		// Assert
-		expect(actual.top).toBe(-1);
-		expect(actual.items).toEqual({});
+		expect(stack.top).toBe(-1);
+		expect(stack.items).toEqual({});
 	});
 
 	it('should push new elements on the top of the stack', () => {
@@ -43,5 +49,15 @@ describe('My stack', () => {
 		expect(stack.peek).toEqual('👻');
 	});
 
-	it.todo('should pop the last element pushed into the stack');
+	it('should pop the last element pushed into the stack', () => {
+		// Arrange
+		stack.push('👻');
+
+		// Act
+		const actual = stack.pop();
+
+		// Assert
+		expect(actual).toEqual('👻');
+		expect(stack.top).toBe(-1);
+	});
 });
